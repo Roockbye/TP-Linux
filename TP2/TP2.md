@@ -90,7 +90,7 @@ il est dans le dossier /var/log/secure
 journalctl -u | sshd
 
 ```
-[melanie@localhost ~]$ journalctl -xe -u sshd | tail -n 10
+[melanie@TP2 ~]$ journalctl -xe -u sshd | tail -n 10
 Dec 09 15:38:11 localhost systemd[1]: Started OpenSSH server daemon.
 ░░ Subject: A start job for unit sshd.service has finished successfully
 ░░ Defined-By: systemd
@@ -103,7 +103,7 @@ Dec 09 15:39:17 localhost.localdomain sshd[1253]: Accepted password for melanie 
 Dec 09 17:39:17 localhost.localdomain sshd[1253]: pam_unix(sshd:session): session opened for user melanie(uid=1000) by (uid=0)
 ```
 ```
-[melanie@localhost ~]$ sudo cat /var/log/secure | grep sshd | tail -n 10
+[melanie@TP2 ~]$ sudo cat /var/log/secure | grep sshd | tail -n 10
 [sudo] password for melanie:
 Dec 11 16:43:25 localhost sshd[1511]: Received disconnect from 192.168.56.1 port 57640:11: disconnected by user
 Dec 11 16:43:25 localhost sshd[1511]: Disconnected from user melanie 192.168.56.1 port 57640
@@ -122,7 +122,7 @@ Dec 11 17:59:34 localhost sshd[1253]: pam_unix(sshd:session): session opened for
 __🌞 Identifier le fichier de configuration du serveur SSH__
 
 ```
-[melanie@localhost ~]$ ls /etc/ssh | grep sshd
+[melanie@TP2 ~]$ ls /etc/ssh | grep sshd
 sshd_config
 sshd_config.d
 ```
@@ -639,6 +639,7 @@ vous pouvez obtenir son chemin avec un systemctl status <SERVICE>
 
 C'est la line "└─723 "sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups""
 ```
+[melanie@TP2 ~]$ sudo systemctl status sshd
 ● sshd.service - OpenSSH server daemon
      Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; vendor preset: enabled)
      Active: active (running) since Sun 2022-12-11 14:36:03 CET; 1h 40min ago
