@@ -1,0 +1,10 @@
+[melanie@TP3 system]$ cat yt.service
+[Unit]
+Description=Service pour lancer script qui telecharge urls youtube
+
+[Service]
+ExecStart=/srv/yt/yt-v2.sh
+User=melanie
+
+[Install]
+WantedBy=multi-user.target
