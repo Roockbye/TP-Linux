@@ -174,6 +174,35 @@ Video https://www.youtube.com/watch?v=kvO_nHnvPtQ was downloaded. File path : /s
 Video https://www.youtube.com/watch?v=jhFDyDgMVUI was downloaded. File path : /srv/yt/downloads/One Second Video/One Second Video.mp4
 Video https://www.youtube.com/watch?v=Wch3gJG2GJ4 was downloaded. File path : /srv/yt/downloads/1 Second Video/1 Second Video.mp4
 ```
+```
+[melanie@TP3 yt]$ cat urls.txt
+https://www.youtube.com/watch?v=YKsQJVzr3a8
+https://www.youtube.com/watch?v=QohH89Eu5iM
+https://www.youtube.com/watch?v=KCISG0phmbw
+https://www.youtube.com/watch?v=QuV9iPaZTBU
+https://www.youtube.com/watch?v=vDHtypVwbHQ
+https://www.youtube.com/watch?v=1O0yazhqaxs
+https://www.youtube.com/watch?v=5DEdR5lqnDE
+https://www.youtube.com/watch?v=NRpNUi5e7Os
+https://www.youtube.com/watch?v=QC8iQqtG0hg
+```
+
+```
+[melanie@TP3 ~]$ sudo useradd yt
+
+[melanie@TP3 ~]$ sudo chown  yt /srv/yt/url_file.txt
+[melanie@TP3 ~]$ sudo chown  yt /srv/yt/yt-v2.sh 
+[melanie@TP3 ~]$ sudo chown yt /var/log/yt/
+[melanie@TP3 yt]$ sudo chown yt downloads
+
+[melanie@TP3 ~]$ cat /etc/passwd | grep yt
+yt:x:1001:1001::/home/yt:/bin/bash
+[melanie@TP3 ~]$ sudo chown melanie /srv/yt/downloads/
+[melanie@TP3 ~]$ sudo chown melanie /var/log/yt/download.log
+[melanie@TP3 ~]$ sudo systemctl daemon-reload
+[melanie@TP3 ~]$ sudo systemctl enable yt
+[melanie@TP3 ~]$ sudo systemctl start yt
+```
 
 📁 Le script [/srv/yt/yt-v2.sh](./yt-v2.sh)
 
@@ -182,7 +211,36 @@ Video https://www.youtube.com/watch?v=Wch3gJG2GJ4 was downloaded. File path : /s
 __🌞 Vous fournirez dans le compte-rendu, en plus des fichiers :__
 
 - un systemctl status yt quand le service est en cours de fonctionnement
+```
+[melanie@TP3 ~]$ sudo systemctl status yt
+● yt.service - Service pour lancer script qui telecharge urls youtube
+     Loaded: loaded (/etc/systemd/system/yt.service; enabled; vendor preset: di>
+     Active: active (running) since Thu 2023-01-12 19:16:14 CET; 10min ago
+   Main PID: 672 (yt-v2.sh)
+      Tasks: 2 (limit: 11116)
+     Memory: 28.3M
+        CPU: 6min 33.244s
+     CGroup: /system.slice/yt.service
+             ├─ 672 /bin/bash /srv/yt/yt-v2.sh
+             └─2497 python /usr/local/bin/youtube-dl -qo "/srv/yt/downloads/Fun>
 
+Jan 12 19:26:33 TP3 yt-v2.sh[672]: Video https://www.youtube.com/watch?v=YKsQJV>
+^C
+[melanie@TP3 ~]$ sudo systemctl status yt | grep active
+     Active: active (running) since Thu 2023-01-12 19:16:14 CET; 10min ago
+```
 
 - un extrait de journalctl -xe -u yt
+```
+[melanie@TP3 ~]$ journalctl -xe -u yt 
+Jan 12 19:28:46 localhost.localdomain systemd[1]: Started <Read a link file to permanently download youtube videos>.
+░░ Subject: A start job for unit yt.service has finished successfully
+░░ Defined-By: systemd
+░░ Support: https://access.redhat.com/support
+░░ 
+░░ A start job for unit yt.service has finished successfully.
 
+░░ The job identifier is 1743
+
+```
+(pour moi: script yt-v2.sh à remodifier)

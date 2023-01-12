@@ -2,14 +2,22 @@
 #!/bin/bash
 #11/01/2023 - Marmande Melanie
 #Update script qui telecharge des vidéos Youtube pour service
+
+if [[ ! -f /var/log/yt/download.log ]]
+then
+  echo "File does not exist"
+  exit 0
+fi
+
+if [[ ! -f /srv/yt/urls.txt ]]
+then
+  echo "File does not exist"
+  exit 0
+fi
+
 while true
 do
-        if [[ -s /srv/yt/urls.txt ]]
-        then
-                url=$(head -n1 /srv/yt/urls.txt)
-        else
-                exit
-        fi
+url=$(cat /srv/yt/urls.txt | head -n 1 | grep 'https://www.youtube.com/watch?v=')
 $(sed -i '1d' /srv/yt/urls.txt)
 title="$(youtube-dl -e "${url}")"
 path="/srv/yt/downloads/${title}"

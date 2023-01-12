@@ -4,7 +4,7 @@ Description=Service pour lancer script qui telecharge urls youtube
 
 [Service]
 ExecStart=/srv/yt/yt-v2.sh
-User=melanie
+User=yt
 
 [Install]
 WantedBy=multi-user.target
