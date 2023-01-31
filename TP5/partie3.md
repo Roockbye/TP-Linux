@@ -51,7 +51,7 @@ owners.
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
 mysql> SHOW DATABASES;
-SHOW TABLES;
+
 +--------------------+
 | Database           |
 +--------------------+
@@ -60,12 +60,6 @@ SHOW TABLES;
 +--------------------+
 2 rows in set (0.00 sec)
 
-mysql> USE <DATABASE_NAME>;
-ERROR 1044 (42000): Access denied for user 'nextcloud'@'10.105.1.11' to database '<DATABASE_NAME>'
-mysql> SHOW TABLES;
-ERROR 1046 (3D000): No database selected
-mysql> USE <DATABASE_NAME>;
-ERROR 1044 (42000): Access denied for user 'nextcloud'@'10.105.1.11' to database '<DATABASE_NAME>'
 mysql> USE nextcloud;
 Database changed
 mysql> SHOW TABLES;
@@ -230,8 +224,10 @@ __🌞 Adapter la configuration d'Apache__
   </Directory>
 </VirtualHost>
 ```
+(Ne pas oublier de faire les updates)
 
 ### 3. Finaliser l'installation de NextCloud
+create user 
 
 __🌞 Exploration de la base de données__
 
