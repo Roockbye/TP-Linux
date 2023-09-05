@@ -52,9 +52,6 @@ bantime=10m
 enabled=true
 ```
 
-
-
-
 ```
 [melanie@db fail2ban]$ sudo systemctl enable fail2ban
 Created symlink /etc/systemd/system/multi-user.target.wants/fail2ban.service → /usr/lib/systemd/system/fail2ban.service.
